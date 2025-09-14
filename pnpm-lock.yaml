@@ -8,12 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@progress/kendo-licensing':
+        specifier: ^1.7.1
+        version: 1.7.1
       '@progress/kendo-react-all':
         specifier: ^12.0.1
         version: 12.0.1(5d5cafdf9b3ee38be1cfa16fe51b56fa)
       '@progress/kendo-react-buttons':
         specifier: ^12.0.1
         version: 12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-react-common@12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-svg-icons@4.5.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@progress/kendo-react-intl@12.0.1(@progress/kendo-intl@3.1.2)(@progress/kendo-licensing@1.7.1)(@progress/kendo-react-common@12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-svg-icons@4.5.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@progress/kendo-react-popup@12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-popup-common@1.9.2)(@progress/kendo-react-common@12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-svg-icons@4.5.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@progress/kendo-svg-icons@4.5.0)(@progress/kendo-webspeech-common@1.0.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      '@progress/kendo-react-charts':
+        specifier: ^12.0.1
+        version: 12.0.1(@progress/kendo-drawing@1.21.2)(@progress/kendo-licensing@1.7.1)(@progress/kendo-react-common@12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-svg-icons@4.5.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@progress/kendo-react-intl@12.0.1(@progress/kendo-intl@3.1.2)(@progress/kendo-licensing@1.7.1)(@progress/kendo-react-common@12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-svg-icons@4.5.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@progress/kendo-react-layout@12.0.1(0da02793ba28a36980d022a77190dfac))(@progress/kendo-react-popup@12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-popup-common@1.9.2)(@progress/kendo-react-common@12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-svg-icons@4.5.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@progress/kendo-svg-icons@4.5.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@progress/kendo-react-common':
         specifier: ^12.0.1
         version: 12.0.1(@progress/kendo-licensing@1.7.1)(@progress/kendo-svg-icons@4.5.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
