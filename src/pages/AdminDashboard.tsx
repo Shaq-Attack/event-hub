@@ -102,9 +102,6 @@ const AdminDashboard: React.FC = () => {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <span>${booking.totalPrice}</span>
-              <Badge themeColor={booking.status === 'confirmed' ? 'success' : booking.status === 'pending' ? 'warning' : 'error'}>
-                {booking.status.toUpperCase()}
-              </Badge>
             </div>
           </div>
         ))}
@@ -142,8 +139,6 @@ const AdminDashboard: React.FC = () => {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
                   <h4 style={{ margin: 0, color: '#2c3e50' }}>{event.title}</h4>
-                  <Badge themeColor="primary">{event.category}</Badge>
-                  {event.featured && <Badge themeColor="warning">FEATURED</Badge>}
                 </div>
                 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '0.5rem', fontSize: '0.9rem', color: '#666', marginBottom: '1rem' }}>
@@ -192,9 +187,6 @@ const AdminDashboard: React.FC = () => {
               <div style={{ flex: 1 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
                   <h4 style={{ margin: 0, color: '#2c3e50' }}>Booking #{booking.id}</h4>
-                  <Badge themeColor={booking.status === 'confirmed' ? 'success' : booking.status === 'pending' ? 'warning' : 'error'}>
-                    {booking.status.toUpperCase()}
-                  </Badge>
                 </div>
                 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem', fontSize: '0.9rem', color: '#666' }}>
