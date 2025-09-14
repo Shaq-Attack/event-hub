@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button } from '@progress/kendo-react-buttons';
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 import { Notification } from '@progress/kendo-react-notification';
-import { Badge } from '@progress/kendo-react-indicators';
 import { bookings } from '../data/bookings';
 
 const MyBookings: React.FC = () => {
@@ -39,19 +38,6 @@ const MyBookings: React.FC = () => {
       month: 'short', 
       day: 'numeric' 
     });
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'confirmed':
-        return 'success';
-      case 'pending':
-        return 'warning';
-      case 'cancelled':
-        return 'error';
-      default:
-        return 'primary';
-    }
   };
 
   return (
