@@ -43,22 +43,24 @@ A professional, modern event booking platform built with React + TypeScript + Vi
 - Overview with key metrics and statistics
 - Event management with progress indicators
 - Booking management and customer details
-- Analytics with category and revenue breakdowns
+- Interactive charts for category and revenue analytics
+- Data visualization with KendoReact Charts
 - Add new events functionality
 
 ## 🛠️ KendoReact Components Used
 
-1. **AppBar** - Navigation header
+1. **AppBar** - Navigation header with sections and spacer
 2. **Button** - Interactive elements throughout
 3. **Badge** - Status indicators and categories
-4. **DropDownList** - Filter selections
+4. **DropDownList** - Filter selections and form dropdowns
 5. **DatePicker** - Date selection for filters and booking
 6. **TabStrip** - Event details organization
 7. **Dialog** - Confirmation modals and forms
-8. **Input/NumericTextBox** - Form inputs
+8. **Input/NumericTextBox** - Form inputs and data entry
 9. **Notification** - Success/error messages
 10. **ProgressBar** - Sales progress and loading indicators
-11. **TileLayout** - Responsive grid layouts (customized)
+11. **Chart** - Data visualization and analytics in admin dashboard
+12. **Icon** - Visual icons throughout the interface
 
 ## 🚀 Getting Started
 
@@ -104,7 +106,7 @@ src/
 - **State Management**: Local state with React hooks
 - **Form Handling**: Multi-step forms with validation
 - **Modal Interactions**: Confirmations and detail views
-- **Data Visualization**: Progress bars and statistics
+- **Data Visualization**: Interactive charts, progress bars and statistics
 - **Accessibility**: Semantic HTML and ARIA labels
 
 ## 🌟 Design Highlights
