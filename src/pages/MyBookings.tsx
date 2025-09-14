@@ -82,9 +82,6 @@ const MyBookings: React.FC = () => {
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
                     <h3 style={{ margin: 0, color: '#2c3e50' }}>{booking.eventTitle}</h3>
-                    <Badge themeColor={getStatusColor(booking.status) as any}>
-                      {booking.status.toUpperCase()}
-                    </Badge>
                   </div>
                   
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem', color: '#666', fontSize: '0.9rem' }}>
