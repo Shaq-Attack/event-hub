@@ -27,7 +27,7 @@ const EventDetails: React.FC = () => {
   if (!event) {
     return (
       <div className="event-details-page">
-        <div style={{ textAlign: 'center', color: 'white', padding: '3rem' }}>
+        <div style={{ textAlign: 'center', color: 'white' }}>
           <h2>Event not found</h2>
           <Button themeColor="primary" onClick={() => navigate('/browse')}>
             Back to Browse Events
@@ -168,10 +168,12 @@ const EventDetails: React.FC = () => {
         </div>
       </div>
 
-      <TabStrip selected={0}>
+      <TabStrip
+        selected={currentStep}
+        onSelect={(e) => setCurrentStep(e.selected)}
+      >
         <TabStripTab title="Overview">
-          <div style={{ padding: '2rem', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '10px', marginTop: '1rem' }}>
-            <h3 style={{ color: 'white', marginBottom: '1rem' }}>About This Event</h3>
+          <div>
             <p style={{ color: 'white', lineHeight: '1.6', fontSize: '1.1rem' }}>
               {event.description}
             </p>
@@ -180,7 +182,7 @@ const EventDetails: React.FC = () => {
         
         {event.lineup && (
           <TabStripTab title="Lineup">
-            <div style={{ padding: '2rem', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '10px', marginTop: '1rem' }}>
+            <div>
               <h3 style={{ color: 'white', marginBottom: '1rem' }}>Featured Artists</h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
                 {event.lineup.map((artist, index) => (
@@ -204,7 +206,7 @@ const EventDetails: React.FC = () => {
         
         {event.venueInfo && (
           <TabStripTab title="Venue Info">
-            <div style={{ padding: '2rem', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '10px', marginTop: '1rem' }}>
+            <div>
               <h3 style={{ color: 'white', marginBottom: '1rem' }}>Venue Details</h3>
               <div style={{ color: 'white', lineHeight: '1.6' }}>
                 <p><strong>Address:</strong> {event.venueInfo.address}</p>
