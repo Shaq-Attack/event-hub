@@ -217,5 +217,92 @@ export const events: Event[] = [
       capacity: 800,
       amenities: ['Exhibition Hall', 'Business Center', 'Catering', 'WiFi']
     }
+  },
+  {
+    id: '9',
+    title: 'Jazz Under the Stars',
+    description: 'Enjoy a magical evening of live jazz performances in an open-air setting.',
+    category: 'Music',
+    date: new Date('2025-08-05'),
+    time: '20:00',
+    location: 'Dallas, TX',
+    venue: 'Dallas Arboretum',
+    price: 60.00,
+    availableTickets: 200,
+    totalTickets: 250,
+    image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=400',
+    featured: false,
+    organizer: 'Dallas Jazz Society',
+    lineup: ['Blue Note Quartet', 'Jazz Collective'],
+    venueInfo: {
+      address: '8525 Garland Rd, Dallas, TX 75218',
+      capacity: 250,
+      amenities: ['Outdoor Seating', 'Food Trucks', 'Parking']
+    }
+  },
+  {
+    id: '10',
+    title: 'Startup Pitch Night',
+    description: 'Watch innovative startups pitch their ideas to investors and industry experts.',
+    category: 'Business',
+    date: new Date('2025-09-10'),
+    time: '18:30',
+    location: 'San Jose, CA',
+    venue: 'Tech Hub',
+    price: 25.00,
+    availableTickets: 100,
+    totalTickets: 120,
+    image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=400',
+    featured: false,
+    organizer: 'Silicon Valley Startups',
+    lineup: ['Startup Panel', 'Investor Q&A'],
+    venueInfo: {
+      address: '123 Innovation Dr, San Jose, CA 95110',
+      capacity: 120,
+      amenities: ['Networking Area', 'Refreshments', 'WiFi']
+    }
+  },
+  {
+    id: '11',
+    title: 'City Marathon 2025',
+    description: 'Run through the heart of the city in this annual marathon event for all ages and skill levels.',
+    category: 'Sports',
+    date: new Date('2025-10-19'),
+    time: '07:00',
+    location: 'Chicago, IL',
+    venue: 'Grant Park',
+    price: 75.00,
+    availableTickets: 5000,
+    totalTickets: 6000,
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400',
+    featured: true,
+    organizer: 'Chicago Marathon Committee',
+    venueInfo: {
+      address: '337 E Randolph St, Chicago, IL 60601',
+      capacity: 6000,
+      amenities: ['Water Stations', 'Medical Support', 'Medal Ceremony']
+    }
+  },
+  {
+    id: '12',
+    title: 'Improv Night',
+    description: 'A hilarious night of unscripted comedy and audience participation.',
+    category: 'Comedy',
+    date: new Date('2025-07-25'),
+    time: '21:00',
+    location: 'New York, NY',
+    venue: 'Upright Citizens Brigade Theatre',
+    price: 40.00,
+    availableTickets: 80,
+    totalTickets: 100,
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400',
+    featured: false,
+    organizer: 'NYC Comedy Collective',
+    lineup: ['UCB Improv Team'],
+    venueInfo: {
+      address: '555 W 42nd St, New York, NY 10036',
+      capacity: 100,
+      amenities: ['Bar', 'Snack Bar', 'Accessibility Features']
+    }
   }
 ];
