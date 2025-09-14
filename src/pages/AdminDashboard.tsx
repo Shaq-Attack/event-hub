@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Button } from '@progress/kendo-react-buttons';
 import { ProgressBar } from '@progress/kendo-react-progressbars';
-import { Badge } from '@progress/kendo-react-indicators';
 import { DatePicker } from '@progress/kendo-react-dateinputs';
 import { Input } from '@progress/kendo-react-inputs';
 import { DropDownList } from '@progress/kendo-react-dropdowns';
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
+import { Chart, ChartSeries, ChartSeriesItem, ChartLegend, ChartTooltip } from '@progress/kendo-react-charts';
 import { events, categories, locations } from '../data/events';
 import { bookings } from '../data/bookings';
 
@@ -216,60 +216,126 @@ const AdminDashboard: React.FC = () => {
     </div>
   );
 
-  const renderAnalytics = () => (
-    <div>
-      <h2 style={{ color: 'white', marginBottom: '2rem' }}>Analytics & Reports</h2>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-        {/* Category Performance */}
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          padding: '1.5rem',
-          borderRadius: '10px'
-        }}>
-          <h3 style={{ color: 'white', marginBottom: '1rem' }}>Events by Category</h3>
-          {categories.map(category => {
-            const categoryEvents = events.filter(e => e.category === category);
-            const percentage = (categoryEvents.length / events.length) * 100;
-            
-            return (
-              <div key={category} style={{ marginBottom: '1rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white', fontSize: '0.9rem', marginBottom: '0.25rem' }}>
-                  <span>{category}</span>
-                  <span>{categoryEvents.length} events ({percentage.toFixed(1)}%)</span>
-                </div>
-                <ProgressBar value={percentage} />
-              </div>
-            );
-          })}
-        </div>
+  const renderAnalytics = () => {
+    // Prepare data for pie chart - Events by Category
+    const categoryData = categories
+      .map((category, index) => {
+        const categoryEvents = events.filter(e => e.category === category);
+        const count = categoryEvents.length;
+        if (count === 0) return null;
+        
+        const colors = [
+          '#FF3B30', // bright red
+          '#34C759', // bright green
+          '#007AFF', // bright blue
+          '#FF9500', // bright orange
+          '#AF52DE', // bright purple
+          '#FFCC00', // bright yellow
+          '#5AC8FA', // bright cyan
+          '#5856D6', // bright indigo
+          '#30B0C7', // bright teal
+        ];
 
-        {/* Revenue by Status */}
+        return {
+          category: category,
+          value: count,
+          color: colors[index % colors.length],
+        };
+      })
+      .filter((item): item is NonNullable<typeof item> => item !== null);
+
+    const totalEvents = categoryData.reduce((sum, item) => sum + item.value, 0);
+
+    return (
+      <div>
+        <h2 style={{ color: 'white', marginBottom: '2rem' }}>Analytics & Reports</h2>
+        
         <div style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          padding: '1.5rem',
-          borderRadius: '10px'
+          background: 'transparent',
+          padding: '1rem',
+          borderRadius: '15px',
+          minHeight: '700px',
+          border: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
-          <h3 style={{ color: 'white', marginBottom: '1rem' }}>Booking Status</h3>
-          {['confirmed', 'pending', 'cancelled'].map(status => {
-            const statusBookings = bookings.filter(b => b.status === status);
-            const revenue = statusBookings.reduce((sum, b) => sum + b.totalPrice, 0);
-            const percentage = totalRevenue > 0 ? (revenue / totalRevenue) * 100 : 0;
-            
-            return (
-              <div key={status} style={{ marginBottom: '1rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', color: 'white', fontSize: '0.9rem', marginBottom: '0.25rem' }}>
-                  <span>{status.charAt(0).toUpperCase() + status.slice(1)}</span>
-                  <span>${revenue.toLocaleString()} ({percentage.toFixed(1)}%)</span>
-                </div>
-                <ProgressBar value={percentage} />
-              </div>
-            );
-          })}
+          <h3 style={{ 
+            color: 'white', 
+            textAlign: 'center', 
+            marginBottom: '2rem',
+            fontSize: '1.8rem',
+            fontWeight: '300'
+          }}>
+            Events Distribution by Category ({totalEvents} total events)
+          </h3>
+          
+          {categoryData.length > 0 ? (
+            <div style={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center',
+              width: '100%',
+              height: '600px'
+            }}>
+              <Chart style={{ 
+                height: '600px', 
+                width: '100%',
+                background: 'transparent'
+              }}>
+                <ChartLegend 
+                  position="bottom" 
+                  labels={{ 
+                    color: 'black',
+                    font: '16px Arial',
+                    padding: 15
+                  }}
+                  margin={20}
+                />
+                <ChartTooltip 
+                  format="{0}: {1} event(s)" 
+                  background="rgba(0,0,0,0.9)"
+                  color="white"
+                  border={{
+                    color: 'rgba(255,255,255,0.3)',
+                    width: 1
+                  }}
+                />
+                <ChartSeries>
+                  <ChartSeriesItem
+                    type="pie"
+                    data={categoryData}
+                    field="value"
+                    categoryField="category"
+                    colorField="color"
+                    size={280}
+                    labels={{
+                      visible: true,
+                      format: "{1}",
+                      color: "white",
+                      font: "bold 14px Arial",
+                      background: "transparent"
+                    }}
+                    border={{
+                      width: 3,
+                      color: 'rgba(255, 255, 255, 0.2)'
+                    }}
+                    opacity={0.9}
+                  />
+                </ChartSeries>
+              </Chart>
+            </div>
+          ) : (
+            <div style={{ 
+              color: 'white', 
+              textAlign: 'center', 
+              fontSize: '18px',
+              marginTop: '100px'
+            }}>
+              No events data available for chart
+            </div>
+          )}
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="admin-dashboard">
