@@ -4,10 +4,12 @@ import { BrowserRouter } from 'react-router-dom'
 import '@progress/kendo-theme-default/dist/all.css'
 import './index.css'
 import App from './App.tsx'
+import { Analytics } from "@vercel/analytics/next"
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+      <Analytics />
       <App />
     </BrowserRouter>
   </StrictMode>,
