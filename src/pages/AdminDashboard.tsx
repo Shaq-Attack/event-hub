@@ -15,6 +15,128 @@ const AdminDashboard: React.FC = () => {
   const [activeView, setActiveView] = useState<AdminView>('overview');
   const [newEventDialogVisible, setNewEventDialogVisible] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  // State for editing event fields
+  const [editEventFields, setEditEventFields] = useState<any>(null);
+
+  // When selectedEvent changes, update editEventFields
+  React.useEffect(() => {
+    if (selectedEvent) {
+      setEditEventFields({
+        title: selectedEvent.title,
+        category: selectedEvent.category,
+        date: selectedEvent.date,
+        time: selectedEvent.time,
+        location: selectedEvent.location,
+        venue: selectedEvent.venue,
+        price: selectedEvent.price,
+        totalTickets: selectedEvent.totalTickets,
+      });
+    } else {
+      setEditEventFields(null);
+    }
+  }, [selectedEvent]);
+
+  // Handler for field changes
+  const handleEditFieldChange = (field: string, value: any) => {
+    setEditEventFields((prev: any) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  // Handler for saving edits (expand as needed)
+  const handleSaveEditEvent = () => {
+    // TODO: Update event in your data source
+    setSelectedEvent(null);
+  };
+
+  // Edit Event Dialog
+  const renderEditEventDialog = () => (
+    <Dialog
+      title="Edit Event"
+      onClose={() => setSelectedEvent(null)}
+      width={600}
+    >
+      <div style={{ padding: '1rem' }}>
+        <div style={{ display: 'grid', gap: '1rem' }}>
+          <div>
+            <label>Event Title:</label>
+            <Input
+              style={{ width: '100%', marginTop: '0.5rem' }}
+              value={editEventFields?.title || ''}
+              onChange={e => handleEditFieldChange('title', e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Category:</label>
+            <DropDownList
+              data={categories}
+              style={{ width: '100%', marginTop: '0.5rem' }}
+              value={editEventFields?.category}
+              onChange={e => handleEditFieldChange('category', e.value)}
+            />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div>
+              <label>Date:</label>
+              <DatePicker
+                style={{ width: '100%', marginTop: '0.5rem' }}
+                value={editEventFields?.date}
+                onChange={e => handleEditFieldChange('date', e.value)}
+              />
+            </div>
+            <div>
+              <label>Time:</label>
+              <Input
+                style={{ width: '100%', marginTop: '0.5rem' }}
+                value={editEventFields?.time || ''}
+                onChange={e => handleEditFieldChange('time', e.target.value)}
+              />
+            </div>
+          </div>
+          <div>
+            <label>Location:</label>
+            <DropDownList
+              data={locations}
+              style={{ width: '100%', marginTop: '0.5rem' }}
+              value={editEventFields?.location}
+              onChange={e => handleEditFieldChange('location', e.value)}
+            />
+          </div>
+          <div>
+            <label>Venue:</label>
+            <Input
+              style={{ width: '100%', marginTop: '0.5rem' }}
+              value={editEventFields?.venue || ''}
+              onChange={e => handleEditFieldChange('venue', e.target.value)}
+            />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div>
+              <label>Price:</label>
+              <Input
+                style={{ width: '100%', marginTop: '0.5rem' }}
+                value={editEventFields?.price || ''}
+                onChange={e => handleEditFieldChange('price', e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Total Tickets:</label>
+              <Input
+                style={{ width: '100%', marginTop: '0.5rem' }}
+                value={editEventFields?.totalTickets || ''}
+                onChange={e => handleEditFieldChange('totalTickets', e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <DialogActionsBar>
+        <Button themeColor="primary" onClick={handleSaveEditEvent}>Save Changes</Button>
+        <Button onClick={() => setSelectedEvent(null)}>Cancel</Button>
+      </DialogActionsBar>
+    </Dialog>
+  );
 
   // Calculate statistics
   const totalEvents = events.length;
@@ -440,6 +562,9 @@ const AdminDashboard: React.FC = () => {
           </DialogActionsBar>
         </Dialog>
       )}
+
+      {/* Edit Event Dialog */}
+      {selectedEvent && renderEditEventDialog()}
     </div>
   );
 };
